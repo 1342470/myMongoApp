@@ -3,10 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//require mongoose 
+const moongoose = require('mongoose');
 
+//connect and set
+mongoose.connect('mongob://localhost:27017/test')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const { default: mongoose } = require('mongoose');
 
 var app = express();
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 fs = require('fs');
+path = require('path');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -13,9 +14,13 @@ router.get('/', function (req, res, next) {
 
 
 router.post('/test', function (req, res, next) {
-  fs.writeFile('writefile.txt', 'file contents', 'utf8', (err) => {
-    console.log("Wrote to file writefile.txt");
-  });
+  const fileData = fs.readFileSync(path.resolve(__dirname, '../data/data.json'));
+  const JSONData = JSON.parse(fileData);
+  console.log(JSONData);
+  
+  // fs.writeFile('writefile.txt', 'file contents', 'utf8', (err) => {
+  //   console.log("Wrote to file writefile.txt");
+  // });
   res.render('index', { title: 'Express' });
 });
 
